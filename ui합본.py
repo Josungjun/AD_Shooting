@@ -34,7 +34,10 @@ class Shoot(QWidget):
         settingGrid.addWidget(self.difficulty(), 0, 0)
         settingGrid.addWidget(self.ship(), 1, 0)
         settingGrid.addWidget(self.background(), 0, 1)
-        settingGrid.addWidget(self.button(), 1, 1)
+        settingGrid.addWidget(self.music(), 1, 1)
+        settingGrid.addWidget(self.button(), 0, 2)
+
+
 
 
         mainLayout = QGridLayout()
@@ -44,6 +47,23 @@ class Shoot(QWidget):
 
         self.setLayout(mainLayout)
         self.setWindowTitle("Shooting")
+
+    def music(self):
+        groupbox = QGroupBox('음악')
+
+        radio1 = QRadioButton('잔잔')
+        radio2 = QRadioButton('funcky')
+        radio3 = QRadioButton('신남')
+        radio1.setChecked(True)
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(radio1)
+        vbox.addWidget(radio2)
+        vbox.addWidget(radio3)
+        groupbox.setLayout(vbox)
+
+        return groupbox
+
 
 
     def difficulty(self):
@@ -105,13 +125,6 @@ class Shoot(QWidget):
         groupbox.setLayout(vbox)
 
         return groupbox
-
-
-
-
-
-
-
 
 
 
