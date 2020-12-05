@@ -15,9 +15,9 @@ WINDOW_HEIGHT = 600
 FPS = 60
 
 class Fighter(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, Fly):
         super(Fighter, self).__init__()
-        self.image = pygame.image.load('fighter.png')
+        self.image = pygame.image.load(Fly)
         self.rect = self.image.get_rect()
         self.rect.x = int(WINDOW_WIDTH / 2)
         self.rect.y = WINDOW_HEIGHT - self.rect.height
@@ -100,15 +100,15 @@ def occur_explosion(surface, x, y):
     explosion_sound = pygame.mixer.Sound(explosion_sounds)
     explosion_sound.play()
 
-def game(background, max_speed, min_speed, occurrock, occurock2):
+def game(background, max_speed, min_speed, occurrock, occurock2, Fly, music):
     default_font = pygame.font.SysFont('suruma', 25)
     background_image = pygame.image.load(background)
     gameover_sound = pygame.mixer.Sound('gameover.wav')
-    pygame.mixer.music.load('music.wav')
+    pygame.mixer.music.load(music)
     pygame.mixer.music.play(-1)
     fps_clock = pygame.time.Clock()
 
-    fighter = Fighter()
+    fighter = Fighter(Fly)
     missiles = pygame.sprite.Group()
     rocks = pygame.sprite.Group() #많은 객체들을 효과적으로 다뤄주는 pygame 함수
 
@@ -185,14 +185,14 @@ def game(background, max_speed, min_speed, occurrock, occurock2):
     return 'game_menu'
 
 def game_menu():
-    start_image = pygame.image.load('background3.jpg')
+    start_image = pygame.image.load('fantasy.jpg')
     screen.blit(start_image, [0,0])
     draw_x = int(WINDOW_WIDTH / 2)
     draw_y = int(WINDOW_HEIGHT / 4)
     font_70 = pygame.font.SysFont('suruma', 70)
     font_40 = pygame.font.SysFont('suruma', 40)
 
-    draw_text('Shoting', font_70, screen, draw_x, draw_y, YELLOW)
+    draw_text('Shoting', font_70, screen, draw_x, draw_y, Black)
     draw_text('press enter', font_40, screen, draw_x, draw_y + 200, WHITE)
     draw_text('Start game', font_40, screen, draw_x, draw_y + 250, WHITE)
 
@@ -207,7 +207,7 @@ def game_menu():
 
     return 'game_menu'
 
-def main(background, max_speed, min_speed, occurrock, occurrock2):
+def main(background, max_speed, min_speed, occurrock, occurrock2, Fly, music):
     global screen
 
     pygame.init()
@@ -219,7 +219,7 @@ def main(background, max_speed, min_speed, occurrock, occurrock2):
         if action == 'game_menu':
             action = game_menu()
         elif action == 'play':
-            action = game(background, max_speed, min_speed, occurrock, occurrock2)
+            action = game(background, max_speed, min_speed, occurrock, occurrock2, Fly, music)
 
     pygame.quit()
 
