@@ -100,9 +100,9 @@ def occur_explosion(surface, x, y):
     explosion_sound = pygame.mixer.Sound(explosion_sounds)
     explosion_sound.play()
 
-def game():
+def game(background, max_speed, min_speed, occurrock, occurock2):
     default_font = pygame.font.SysFont('suruma', 25)
-    background_image = pygame.image.load('background.png')
+    background_image = pygame.image.load(background)
     gameover_sound = pygame.mixer.Sound('gameover.wav')
     pygame.mixer.music.load('music.wav')
     pygame.mixer.music.play(-1)
@@ -137,9 +137,9 @@ def game():
 
         screen.blit(background_image, background_image.get_rect())
 
-        occur_of_rocks = 1 + int(shot_count / 150)
-        min_rock_speed = 1 + int(shot_count / 100)
-        max_rock_speed = 1 + int(shot_count / 50)
+        occur_of_rocks = occurock2 + int(shot_count / occurrock)
+        min_rock_speed = 1 + int(shot_count / min_speed)
+        max_rock_speed = 1 + int(shot_count / max_speed)
 
         if random.randint(1, occur_prob) == 1:
             for i in range(occur_of_rocks):
@@ -207,7 +207,7 @@ def game_menu():
 
     return 'game_menu'
 
-def main():
+def main(background, max_speed, min_speed, occurrock, occurrock2):
     global screen
 
     pygame.init()
@@ -219,7 +219,7 @@ def main():
         if action == 'game_menu':
             action = game_menu()
         elif action == 'play':
-            action = game()
+            action = game(background, max_speed, min_speed, occurrock, occurrock2)
 
     pygame.quit()
 
