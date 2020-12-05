@@ -1,5 +1,5 @@
     def buttonClicked(self):
-        global max_speed, min_speed, background, occurrock
+        global max_speed, min_speed, background, occurrock, occurrock2
 
         button = self.sender()
         key = button.text()
@@ -16,17 +16,20 @@
         elif key == 'easy':
             max_speed = 200
             min_speed = 300
-            occurrock = 100
+            occurrock = 200
+            occurrock2 = 1
         elif key == 'normal':
             max_speed = 100
             min_speed = 200
             occurrock = 150
+            occurrock2 = 2
         elif key == 'hard':
             max_speed = 50
             min_speed= 100
-            occurrock = 200
+            occurrock = 100
+            occurrock2 = 3
         elif key == 'Start':
-            PyshootingR.main(background, max_speed, min_speed, occurrock)
+            PyshootingR.main(background, max_speed, min_speed, occurrock, occurrock2)
         elif key == 'Quit':
             sys.exit()
 
